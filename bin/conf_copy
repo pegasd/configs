@@ -1,0 +1,17 @@
+#!/bin/sh -
+
+INIT_DIR="`git rev-parse --show-toplevel`"
+ZSH_CONF_DIR="${INIT_DIR}/zsh"
+VIM_CONF_DIR="${INIT_DIR}/vim"
+
+# ZSH
+cp ~/.zshrc			${ZSH_CONF_DIR}/dot.zshrc
+cp ~/.zsh/alenv		${ZSH_CONF_DIR}/dot.zsh-alenv
+cp ~/.zsh/colors	${ZSH_CONF_DIR}/dot.zsh-colors
+cp ~/.zsh/compdef	${ZSH_CONF_DIR}/dot.zsh-compdef
+cp ~/.zsh/keybind	${ZSH_CONF_DIR}/dot.zsh-keybind
+cp ~/.zsh/prompt	${ZSH_CONF_DIR}/dot.zsh-prompt
+
+# Vim
+cp ~/.vimrc			${VIM_CONF_DIR}/dot.vimrc
+cp ~/.vim/syntax	${VIM_CONF_DIR}/dot.vim-syntax.vim

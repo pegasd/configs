@@ -1,0 +1,193 @@
+###
+#  .zsh/alenv - ZSH Aliases and Environmental variables
+##
+# zsh(1), zshmisc(1)
+# by Eugene Piven
+###
+
+# Set LS function
+setls()
+{
+  if [ $# != 2 ]; then
+    echo 'Usage: setls bsd|obsd|gnu /path/to/ls'
+    return 1
+  fi
+  case $1 in
+    bsd)
+      export LSCOLORS='dxfxexexcxexexbxhxhxdx'
+      alias ls="$2 -FG"
+      alias la="$2 -FGA"
+      alias l1="$2 -FG1"
+      alias ll="$2 -FGAl"
+      alias lll="$2 -FGal"
+      ;;
+    gnu)
+      ###
+      # colors:
+      #
+      # 00 - reset (disable all previous formatting)
+      #
+      # x1 - bold
+      # x3 - italics
+      # x4 - underline
+      # x7 - inverse
+      # x9 - strikethrough
+      # where x is 1 to enable a feature and 2 to disable it
+      #
+      # x0 - black
+      # x1 - red
+      # x2 - green
+      # x3 - yellow
+      # x4 - blue
+      # x5 - purple
+      # x6 - cyan
+      # x7 - white
+      # x8 - default
+      # where x is 3 for foreground and 4 for background
+      ##
+      # Parts of LS_COLORS variable:
+      # param	deflt  description
+      # no	0      Normal (non-filename) text
+      # fi	0      Regular file
+      # di	01;34  Directory
+      # ln	01;36  Symbolic link
+      # pi	33     Named pipe (FIFO)
+      # so	01;35  Socket
+      # do	01;35  Door
+      # bd	01;33  Block device
+      # cd	01;32  Character device
+      # ex	01;32  Executable file
+      # mi	(none) Missing file (defaults to fi)
+      # or	(none) Orphaned symbolic link (defaults to ln)
+      # lc	^[[    Left code
+      # rc	m      Right code
+      # ec	(none) End code (replaces lc+no+rc)
+      ###
+      LS_COLORS='no=00:fi=00:di=33:ln=35:pi=34:so=35:do=35'
+      export LS_COLORS="$LS_COLORS:bd=35:cd=35:or=31:ex=32"
+      alias ls="$2 --color=always -F"
+      alias la="$2 --color=always -FA"
+      alias l1="$2 --color=always -F1"
+      alias ll="$2 --color=always -Fal"
+      ;;
+    obsd)
+      export LSCOLORS='dxfxexexcxexexbxhxhxdx'
+      alias ls="$2 -F"
+      alias la="$2 -FA"
+      alias l1="$2 -F1"
+      alias ll="$2 -Fal"
+      ;;
+    *)
+      echo 'Usage: setls bsd|obsd|gnu /path/to/ls'
+      return 1
+  esac
+}
+
+# Environment
+PAGER='less'
+[ -x "`which most`" ] && PAGER='most -cw'
+
+# Global aliases
+alias -g TN='> /dev/null 2>&1'
+alias -g TNB='> /dev/null 2>&1 &'
+alias -g ETN='2> /dev/null'
+alias -g A='| awk'
+alias -g T='| tail -n 15'
+alias -g G='| egrep'
+alias -g H='| head -n 15'
+alias -g L='| less'
+alias -g M='| most'
+
+# Aliases
+alias scpresume='rsync --partial --progress -ave ssh'
+alias t='tail -n 15'
+alias h='head -n 15'
+alias g='egrep'
+alias p='ps'
+alias cp='cp -p'
+alias telnet='telnet -K'
+#alias size='du -sh'
+vcmd=`which vim`
+if [[ -x $vcmd ]]; then
+  alias v=$vcmd
+  alias sv="sudo $vcmd"
+  EDITOR=$vcmd
+  [ -x "`which gvim`" ] && alias gv='gvim'
+else
+  EDITOR='vi'
+  alias v='vi'
+fi
+
+# System-specific parameters
+case `uname` in
+  FreeBSD)
+    if [ -x /usr/local/bin/gnuls ]; then
+      setls gnu /usr/local/bin/gnuls
+    else
+      setls bsd /bin/ls
+    fi
+
+    alias inf='cat `whereis -qs $1 2> /dev/null`/pkg-descr 2> /dev/null || echo No pkg-descr found for $1'
+    alias p='ps -aux'
+    ;;
+  OpenBSD)
+    if [ -x /usr/local/bin/gls ]; then
+      setls gnu /usr/local/bin/gls
+    else
+      setls obsd /bin/ls
+    fi
+    ;;
+  Darwin)
+    . /sw/bin/init.sh 2> /dev/null
+    export MANPATH="/usr/share/man:/usr/local/share/man:/usr/X11/man:/sw/share/man:/opt/local/man"
+
+    if [ -x /sw/bin/ls ]; then
+      setls gnu /sw/bin/ls
+    else
+      setls bsd /bin/ls
+    fi
+    MPLAYERLOC="/Applications/MPlayer.app/Contents/Resources/Binaries/mpextended.mpBinaries/Contents/MacOS/mplayer"
+    [ -x "$MPLAYERLOC" ] && alias mplayer="$MPLAYERLOC"
+    alias p='ps -aux'
+    alias gv='open -a Vim'
+    alias rmjunk='find -E . -regex ".*(\.yptfxcaches|\.DS_Store|\.localized|\._\.Trashes|\.Trashes|\.fseventsd|\.Spotlight-V100)" -delete'
+    alias eject='diskutil eject'
+    alias run='open -a'
+    ;;
+  Linux)
+    setls gnu `which ls`
+    alias p='ps -aux'
+    ;;
+  SunOS)
+    alias ls='ls -F'
+    alias la='ls -FA'
+    alias l1='ls -F1'
+    alias ll='ls -Fal'
+    alias p='ps -ef'
+    ;;
+  OSF1)
+    alias ls='ls -F'
+    alias la='ls -FA'
+    alias l1='ls -F1'
+    alias ll='ls -Fal'
+    ;;
+  CYGWIN_*)
+    setls gnu /bin/ls
+    ;;
+  *)
+    alias la='ls -a'
+    alias ll='ls -l'
+    ;;
+esac
+
+# hostname-specific parameters
+case `echo $HOST |cut -d . -f 1` in
+  simensis)
+    hcolor=$pr_green
+    ;;
+  *)
+    hcolor=$pr_magenta
+    ;;
+esac
+
+export PAGER EDITOR

@@ -1,0 +1,15 @@
+###
+#  .zsh/keybind -- ZSH key bindings
+###
+
+# vi-style of command-line editing
+bindkey -v
+
+# Key bindings
+bindkey "\e[A" history-search-backward		# up-arrow
+bindkey "\e[B" history-search-forward		# down-arrow
+#bindkey "\e[A" history-end-search-backward		# up-arrow
+#bindkey "\e[B" history-end-search-forward	# down-arrow
+bindkey "\e[1~" beginning-of-line		# home
+bindkey "\e[4~" end-of-line			# end
+bindkey "\e[3~" delete-char			# delete

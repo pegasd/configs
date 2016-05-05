@@ -1,0 +1,66 @@
+###
+#  .zsh/prompt - ZSH Prompt
+##
+# Adapted from code found at <https://gist.github.com/1712320>.
+###
+
+setopt prompt_subst
+
+autoload -Uz colors && colors
+
+# vcs_info
+VCS_NAME="%{$fg[cyan]%}%s%{$reset_color%}"
+VCS_ACTION="%{$fg[red]%}%a%{$reset_color%}"
+VCS_PROMPT="%{$fg[cyan]%}>%{$reset_color%}"
+VCS_BRANCH="%{$fg[yellow]%}%b%{$reset_color%}"
+VCS_STAGED="%{$fg[green]%}✘%{$reset_color%}"
+VCS_UNSTAGED="%{$fg[yellow]%}✘%{$reset_color%}"
+VCS_UNTRACKED="%{$fg[red]%}✘%{$reset_color%}"
+VCS_BRL="%{$fg[green]%}[%{$reset_color%}"
+VCS_BRR="%{$fg[green]%}]%{$reset_color%}"
+
+autoload -Uz vcs_info
+
+zstyle ':vcs_info:*' enable hg git svn cvs
+
+zstyle ':vcs_info:*' check-for-changes true
+
+zstyle ':vcs_info:*' formats "${VCS_NAME}${VCS_PROMPT} $VCS_BRL$VCS_BRANCH%m$VCS_BRR%u%c "
+zstyle ':vcs_info:*' actionformats "${VCS_NAME}:${VCS_ACTION}${VCS_PROMPT} $VCS_BRL$VCS_BRANCH%m$VCS_BRR%u%c "
+zstyle ':vcs_info:*' stagedstr " $VCS_STAGED"
+zstyle ':vcs_info:*' unstagedstr " $VCS_UNSTAGED"
+
+# look for untracked files in git repo
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
++vi-git-untracked() {
+if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+	git status --porcelain | grep '??' &> /dev/null ; then
+	hook_com[staged]+=" $VCS_UNTRACKED"
+fi
+}
+
+HOST_COLOR="$hcolor"
+CDIR_COLOR="%{$fg[yellow]%}"
+if [ "`whoami`" = "root" ]
+then
+	USER_COLOR="%{$fg[red]%}"
+	PROMPT_COLOR="%{$fg[red]%}"
+else
+	USER_COLOR="$HOST_COLOR"
+	PROMPT_COLOR="%{$fg[white]%}"
+fi
+
+precmd() {
+	((PWDLEN = $COLUMNS - ${#${(%):-%n-%m------(-)}}))
+	vcs_info
+}
+
+PR_HOST="$HOST_COLOR%n%{$reset_color%}"
+PR_USER="$USER_COLOR%m%{$reset_color%}"
+PR_TIME="%{$reset_color%}%D{%H:%M}"
+PR_PROMPT="$PROMPT_COLOR%#%{$reset_color%}"
+
+PROMPT='${PR_HOST}@${PR_USER} $PR_TIME $CDIR_COLOR%$PWDLEN<...<%~%<<%{$reset_color%}
+ ${vcs_info_msg_0_}$PR_PROMPT '
+PS2='(%_) $hcolor>$pr_reset '
+RPROMPT=''
