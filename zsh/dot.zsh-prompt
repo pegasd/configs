@@ -12,7 +12,7 @@ autoload -Uz colors && colors
 VCS_NAME="%{$fg[cyan]%}%s%{$reset_color%}"
 VCS_ACTION="%{$fg[red]%}%a%{$reset_color%}"
 VCS_PROMPT="%{$fg[cyan]%}>%{$reset_color%}"
-VCS_BRANCH="%{$fg[yellow]%}%b%{$reset_color%}"
+VCS_BRANCH="%{$fg[cyan]%}%b%{$reset_color%}"
 VCS_STAGED="%{$fg[green]%}✘%{$reset_color%}"
 VCS_UNSTAGED="%{$fg[yellow]%}✘%{$reset_color%}"
 VCS_UNTRACKED="%{$fg[red]%}✘%{$reset_color%}"
