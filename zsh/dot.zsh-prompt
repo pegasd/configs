@@ -12,7 +12,7 @@ autoload -Uz colors && colors
 VCS_NAME="%{$fg[cyan]%}%s%{$reset_color%}"
 VCS_ACTION="%{$fg[red]%}%a%{$reset_color%}"
 VCS_PROMPT="%{$fg[cyan]%}>%{$reset_color%}"
-VCS_BRANCH="%{$fg[cyan]%}%b%{$reset_color%}"
+VCS_BRANCH="%{$fg[white]%}%b%{$reset_color%}"
 VCS_STAGED="%{$fg[green]%}✘%{$reset_color%}"
 VCS_UNSTAGED="%{$fg[yellow]%}✘%{$reset_color%}"
 VCS_UNTRACKED="%{$fg[red]%}✘%{$reset_color%}"
@@ -75,10 +75,10 @@ precmd() {
 
 PR_HOST="$HOST_COLOR%n%{$reset_color%}"
 PR_USER="$USER_COLOR%m%{$reset_color%}"
-PR_TIME="%{$reset_color%}%D{%H:%M}"
 PR_PROMPT="$PROMPT_COLOR%#%{$reset_color%}"
+PR_RETCODE="%(?..%{$fg_bold[red]%?$pr_reset )"
 
-PROMPT='${PR_HOST}@${PR_USER} $PR_TIME $CDIR_COLOR%$PWDLEN<...<%~%<<%{$reset_color%}
- ${vcs_info_msg_0_}$PR_PROMPT '
-PS2='(%_) $hcolor>$pr_reset '
+PROMPT='⌜ ${PR_HOST}@${PR_USER} $CDIR_COLOR%$PWDLEN<...<%~%<<%{$reset_color%}
+⌞ $vcs_info_msg_0_$PR_RETCODE$PR_PROMPT '
+PROMPT2='(%_) $hcolor>$pr_reset '
 RPROMPT=''
