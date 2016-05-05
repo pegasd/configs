@@ -1,0 +1,29 @@
+#!/bin/sh -
+
+INIT_DIR="`git rev-parse --show-toplevel`"
+ZSH_CONF_DIR="${INIT_DIR}/zsh"
+VIM_CONF_DIR="${INIT_DIR}/vim"
+
+case "$1" in
+	"vim")
+		[ -f ~/.history ] && rm ~/.history
+		[ ! -d ~/.history ] && mkdir ~/.history
+		[ ! -d ~/.vim ] && mkdir ~/.vim
+		cp $VIM_CONF_DIR/dot.vimrc ~/.vimrc
+		cp $VIM_CONF_DIR/dot.syntax.vim ~/.vim/syntax
+		;;
+	"zsh")
+		[ -f ~/.history ] && rm ~/.history
+		[ ! -d ~/.history ] && mkdir ~/.history
+		[ ! -d ~/.zsh ] && mkdir ~/.zsh
+		cp $ZSH_CONF_DIR/dot.zshrc ~/.zshrc
+		cp $ZSH_CONF_DIR/dot.zsh-alenv ~/.zsh/alenv
+		cp $ZSH_CONF_DIR/dot.zsh-colors ~/.zsh/colors
+		cp $ZSH_CONF_DIR/dot.zsh-compdef ~/.zsh/compdef
+		cp $ZSH_CONF_DIR/dot.zsh-keybind ~/.zsh/keybind
+		cp $ZSH_CONF_DIR/dot.zsh-prompt ~/.zsh/prompt
+		;;
+	*)
+		echo "Usage: `basename $0` vim|zsh"
+		;;
+esac

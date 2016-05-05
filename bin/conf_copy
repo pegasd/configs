@@ -14,4 +14,4 @@ cp ~/.zsh/prompt	${ZSH_CONF_DIR}/dot.zsh-prompt
 
 # Vim
 cp ~/.vimrc			${VIM_CONF_DIR}/dot.vimrc
-cp ~/.vim/syntax	${VIM_CONF_DIR}/dot.vim-syntax.vim
+cp ~/.vim/syntax	${VIM_CONF_DIR}/dot.syntax.vim
