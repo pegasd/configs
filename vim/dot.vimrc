@@ -40,7 +40,7 @@ set tenc=utf-8				" terminal
 "set cinw={,case,public,private,protected " extra indent after these keywords
 "set cink=0{,0},0),:,!^F,o,O,*<CR> " keys that re-indent in the insert mode
 "set cino=:s,l1,t0,+5,c0,C1,/2,(0,u1,U1,w1 " indenting options
-set noet				" don't expand tabs to spaces
+set et					" don't expand tabs to spaces
 set tabstop=4			" tab is displayed as this many spaces
 set shiftwidth=4		" spaces to use for each step of auto-indent
 set smarttab			" indents according to shift width
