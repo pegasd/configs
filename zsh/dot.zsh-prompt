@@ -16,8 +16,8 @@ VCS_BRANCH="%{$fg[white]%}%b%{$reset_color%}"
 VCS_STAGED="%{$fg[green]%}✘%{$reset_color%}"
 VCS_UNSTAGED="%{$fg[yellow]%}✘%{$reset_color%}"
 VCS_UNTRACKED="%{$fg[red]%}✘%{$reset_color%}"
-VCS_BRL="%{$fg[green]%}[%{$reset_color%}"
-VCS_BRR="%{$fg[green]%}]%{$reset_color%}"
+VCS_BRL="%{$fg[cyan]%}[%{$reset_color%}"
+VCS_BRR="%{$fg[cyan]%}]%{$reset_color%}"
 
 autoload -Uz vcs_info
 
@@ -26,8 +26,8 @@ zstyle ':vcs_info:*' enable hg git svn cvs
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' get-revision true
 
-zstyle ':vcs_info:*' formats "${VCS_NAME}${VCS_PROMPT} $VCS_BRL$VCS_BRANCH%m$VCS_BRR%u%c "
-zstyle ':vcs_info:*' actionformats "${VCS_NAME}:${VCS_ACTION}${VCS_PROMPT} $VCS_BRL$VCS_BRANCH%m$VCS_BRR%u%c "
+zstyle ':vcs_info:*' formats "${VCS_NAME}${VCS_PROMPT} $VCS_BRL$VCS_BRANCH%m%u%c$VCS_BRR "
+zstyle ':vcs_info:*' actionformats "${VCS_NAME}:${VCS_ACTION}${VCS_PROMPT} $VCS_BRL$VCS_BRANCH%m%u%c$VCS_BRR "
 zstyle ':vcs_info:*' stagedstr " $VCS_STAGED"
 zstyle ':vcs_info:*' unstagedstr " $VCS_UNSTAGED"
 
