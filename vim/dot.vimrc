@@ -76,20 +76,10 @@ fu! CheckFileEncoding()
 endf
 
 " Key mappings
-map ,fc		:setf csh<CR>
-map ,ft		:setf text<CR>
-map ,fv		:setf vim<CR>
-map ,fz		:setf zsh<CR>
-
-map .fc		:ru folding/c-fold.vim<CR>
-map .fs		:ru folding/sh-fold.vim<CR>
-map .ft		:ru folding/tex-fold.vim<CR>
-map .fv		:ru folding/vim-fold.vim<CR>
-
 map <silent> ,on :set nu!<CR>
 map ,op		:set paste!<CR>
-map <silent> ,os :set spell!<CR>
 
+map <silent> ,os :set spell!<CR>
 map ,le		:set spl=en_us<CR>
 map ,lr		:set spl=ru<CR>
 
@@ -98,13 +88,13 @@ au VimEnter * echo "Welcome back, PegaS!"
 au VimLeave * echo "Later! (-"
 
 " text
-au FileType text set spell fdm=manual
+au FileType text set fdm=manual spell
 au BufWinEnter *.txt call CheckFileEncoding()
 
 " bash/sh
 au BufRead,BufNewFile *.sh setfiletype sh
 au BufRead,BufNewFile *.bash setfiletype sh
-au FileType sh set ts=2 sw=2 sts=2 noet
+au FileType sh set ts=2 sw=2 sts=2 et
 au FileType sh syn on
 
 " python
