@@ -78,7 +78,8 @@ PR_USER="$USER_COLOR%m%{$reset_color%}"
 PR_PROMPT="$PROMPT_COLOR%#%{$reset_color%}"
 PR_RETCODE="%(?..%{$fg_bold[red]%?$pr_reset )"
 
-PROMPT='⌜ ${PR_HOST}@${PR_USER} $CDIR_COLOR%$PWDLEN<...<%~%<<%{$reset_color%}
+PROMPT='
+⌜ ${PR_HOST}@${PR_USER} $CDIR_COLOR%$PWDLEN<...<%~%<<%{$reset_color%}
 ⌞ $vcs_info_msg_0_$PR_RETCODE$PR_PROMPT '
 PROMPT2='(%_) $hcolor>$pr_reset '
 RPROMPT=''

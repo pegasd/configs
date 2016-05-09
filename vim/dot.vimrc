@@ -56,13 +56,10 @@ set stl=[%n]\ -=PegaS=-\ %F\ \ Type=%Y\ \ %r\ %1*%m%*%w%=%(Line:\ %l%)\ Column:\
 " .viminfo file
 set vi='100,<500,:10000,@10000,/10000,s1024,f1,h,r/tmp,n~/.history/viminfo
 
-" 7.0-specific settings
-if version >= 700
-  set nospell			" turn spelling off
-  set sps=double		" use 'fast', then 'best' method of suggesting
-  set spl=ru			" use Russian dictionary
-  set spl=en_us			" use English dictionary
-endif
+set nospell			" turn spelling off
+set sps=double		" use 'fast', then 'best' method of suggesting
+set spl=ru			" use Russian dictionary
+set spl=en_us		" use English dictionary
 
 " Syntax highlighting only if supported
 if &t_Co > 2 || has("gui_running")
@@ -96,12 +93,21 @@ map <silent> ,os :set spell!<CR>
 map ,le		:set spl=en_us<CR>
 map ,lr		:set spl=ru<CR>
 
-" auto commands
-au FileType text
-  \ set spell | set fdm=manual
-au BufWinEnter *.txt
-  \ call CheckFileEncoding()
-au VimEnter *
-  \ echo "Welcome back, PegaS!"
-au VimLeave *
-  \ echo "Later! (-"
+" Hello / Goodbye
+au VimEnter * echo "Welcome back, PegaS!"
+au VimLeave * echo "Later! (-"
+
+" text
+au FileType text set spell fdm=manual
+au BufWinEnter *.txt call CheckFileEncoding()
+
+" bash/sh
+au BufRead,BufNewFile *.sh setfiletype sh
+au BufRead,BufNewFile *.bash setfiletype sh
+au FileType sh set ts=2 sw=2 sts=2 noet
+au FileType sh syn on
+
+" python
+au BufRead,BufNewFile *.py setfiletype python
+au FileType python set ts=4 sw=4 sts=4 et
+au FileType python syn on
