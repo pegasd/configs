@@ -24,13 +24,13 @@ vcs_prompt() {
 
 hg_prompt() {
 
-  [ -z "`hg branch 2> /dev/null`" ] && return
+  HG_BRANCH="`hg branch 2> /dev/null`"
+  [ -z "$HG_BRANCH" ] && return
 
   PR="${cyan}hg>${reset}"
   PR_LHS="${cyan}[${reset}"
   PR_RHS="${cyan}]${reset}"
 
-  HG_BRANCH="`hg branch 2> /dev/null`"
   PR_BRANCH="${white}${HG_BRANCH}${reset}"
 
   HGST="`hg status`"
@@ -75,7 +75,7 @@ export PS2='> '
 
 # Aliases
 case `uname 2> /dev/null` in
-  Darwin)
+  Darwin|*BSD)
     alias ls="ls -FG"
     alias la="ls -FGA"
     alias l1="ls -FG1"

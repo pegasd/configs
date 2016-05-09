@@ -11,12 +11,13 @@ set nocp					" turn off vi compatibility and behave leet ((-
 set nobk					" turn off back ups
 set nowb					" turn off back ups
 filet on					" turn on filetype recognition
+filet indent on				" filetype-based indentation
 
 " Browsing
 set bs=indent,eol,start		" where to use backspace
 set ek						" allow arrow keys in insert mode
 set is						" do incremental searching
-set hi=50					" history levels
+set hi=500					" history levels
 set mat=7					" tenths of a second to show matching brackets
 set mps=(:),[:],{:},<:>		" matching characters
 set noeb					" no beeping
@@ -44,7 +45,6 @@ set noet				" don't expand tabs to spaces
 set tabstop=4			" tab is displayed as this many spaces
 set shiftwidth=4		" spaces to use for each step of auto-indent
 set smarttab			" indents according to shift width
-filet indent on			" filetype-based indentation
 
 " Status line
 set ls=2			" always display status line
