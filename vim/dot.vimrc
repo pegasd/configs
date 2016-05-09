@@ -63,7 +63,7 @@ set spl=en_us		" use English dictionary
 
 " Syntax highlighting only if supported
 if &t_Co > 2 || has("gui_running")
-  let mysyntaxfile='~/.vim/syntax'
+  let mysyntaxfile='~/.vim/syntax.vim'
   syn enable
   set nohls
 endif
