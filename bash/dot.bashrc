@@ -19,12 +19,32 @@ white="$E[37m"
 
 # VCS prompt
 vcs_prompt() {
-  echo "$(git_prompt)"
+  echo "$(git_prompt)$(hg_prompt)"
+}
+
+hg_prompt() {
+
+  [ -z "`hg branch 2> /dev/null`" ] && return
+
+  PR="${cyan}hg>${reset}"
+  PR_LHS="${cyan}[${reset}"
+  PR_RHS="${cyan}]${reset}"
+
+  HG_BRANCH="`hg branch 2> /dev/null`"
+  PR_BRANCH="${white}${HG_BRANCH}${reset}"
+
+  HGST="`hg status`"
+  [ "`echo "$HGST" | grep '^A'`" != "" ] && PR_ST="${green}A${reset}"
+  [ "`echo "$HGST" | grep '^M'`" != "" ] && PR_UNST="${bold}${yellow}M${reset}"
+  [ "`echo "$HGST" | grep '^?'`" != "" ] && PR_UNTR="${bold}${red}C${reset}"
+  [ -n "$PR_ST" -o -n "$PR_UNST" ] && PR_STATUS=" ${PR_LHS} ${PR_ST}${PR_UNST}${PR_UNTR} ${PR_RHS}"
+
+  HG_PROMPT="$PR ${PR_LHS}${PR_BRANCH}${PR_RHS}${PR_STATUS} "
+  echo "$HG_PROMPT"
 }
 
 git_prompt() {
 
-  # Quit right away if not inside working directory
   [ -z "`git rev-parse --is-inside-work-tree 2> /dev/null`" ] && return
 
   PR="${cyan}git>${reset}"
@@ -35,11 +55,12 @@ git_prompt() {
   PR_BRANCH="${white}${GIT_BRANCH}${reset}"
 
   GST="`git status --porcelain 2> /dev/null`"
-  [ "`echo "$GST" | grep '^A'`" != "" ] && PR_ST=" ${green}*${reset}"
-  [ "`echo "$GST" | grep '^ M'`" != "" ] && PR_UNST=" ${yellow}*${reset}"
-  [ "`echo "$GST" | grep '^??'`" != "" ] && PR_UNTR=" ${red}*${reset}"
+  [ "`echo "$GST" | grep '^A'`" != "" ] && PR_ST="${green}A${reset}"
+  [ "`echo "$GST" | grep '^ M'`" != "" ] && PR_UNST="${bold}${yellow}M${reset}"
+  [ "`echo "$GST" | grep '^??'`" != "" ] && PR_UNTR="${bold}${red}C${reset}"
+  [ -n "$PR_ST" -o -n "$PR_UNST" -o -n "$PR_UNTR" ] && PR_STATUS=" ${PR_LHS} ${PR_ST}${PR_UNST}${PR_UNTR} ${PR_RHS}"
 
-  GIT_PROMPT="$PR ${PR_LHS}${PR_BRANCH}${PR_ST}${PR_UNST}${PR_UNTR}${PR_RHS} "
+  GIT_PROMPT="$PR ${PR_LHS}${PR_BRANCH}${PR_RHS}${PR_STATUS} "
   echo "$GIT_PROMPT"
 }
 
