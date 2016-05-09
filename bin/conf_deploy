@@ -55,8 +55,7 @@ deploy_bash() {
 
 case $1 in
   vim) deploy_vim ;;
-zsh) deploy_zsh ;;
+  zsh) deploy_zsh ;;
   bash) deploy_bash ;;
-
-*) echo "Usage: `basename $0` vim|zsh|bash" ;;
+  *) echo "Usage: `basename $0` vim|zsh|bash" ;;
 esac
