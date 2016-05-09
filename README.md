@@ -5,7 +5,8 @@ Some of my configuration files.
 - vim
 - bash
 
-### Basic Installation
-% `git clone https://github.com/pegasd/configs.git`
-% `cd configs`
-% `bin/conf_deploy zsh|vim|bash`
+#### Basic Installation
+
+```shell
+bin/conf_deploy zsh|vim|bash
+```
