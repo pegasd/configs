@@ -21,7 +21,15 @@ for _d in $TPATH; do
   [ -d $_d ] && path=($path $_d)
 done
 unset _d
+###
 #path=($path .)
+##
+# This ^ is here for historical purposes only.
+#
+# Actually...
+# It's also there as a reminder that you guys should NEVER put . in your path.
+# Unless you want somebody to put a little 'rm -rf /' script in your $HOME and name it 'ls'.
+###
 
 # Additional files
 . ~/.zsh/colors
@@ -48,9 +56,10 @@ setopt prompt_sp			# output with no <CR> correctly displayed
 setopt prompt_subst			# substitute variables inside prompt
 setopt pushd_ignore_dups		# don't put dups onto the dir stack
 setopt rm_star_silent			# don't complain at rm *
-umask 002
+
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+umask 002
 
 # Return
 return 0

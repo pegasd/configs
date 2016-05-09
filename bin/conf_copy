@@ -3,6 +3,7 @@
 INIT_DIR="`git rev-parse --show-toplevel`"
 ZSH_CONF_DIR="${INIT_DIR}/zsh"
 VIM_CONF_DIR="${INIT_DIR}/vim"
+BASH_CONF_DIR="${INIT_DIR}/bash"
 
 # ZSH
 cp ~/.zshrc			${ZSH_CONF_DIR}/dot.zshrc
@@ -15,3 +16,6 @@ cp ~/.zsh/prompt	${ZSH_CONF_DIR}/dot.zsh-prompt
 # Vim
 cp ~/.vimrc			${VIM_CONF_DIR}/dot.vimrc
 cp ~/.vim/syntax	${VIM_CONF_DIR}/dot.syntax.vim
+
+# BASH
+cp ~/.bashrc			${BASH_CONF_DIR}/dot.bashrc

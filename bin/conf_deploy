@@ -3,27 +3,61 @@
 INIT_DIR="`git rev-parse --show-toplevel`"
 ZSH_CONF_DIR="${INIT_DIR}/zsh"
 VIM_CONF_DIR="${INIT_DIR}/vim"
+BASH_CONF_DIR="${INIT_DIR}/bash"
 
-case "$1" in
-	"vim")
-		[ -f ~/.history ] && rm ~/.history
-		[ ! -d ~/.history ] && mkdir ~/.history
-		[ ! -d ~/.vim ] && mkdir ~/.vim
-		cp $VIM_CONF_DIR/dot.vimrc ~/.vimrc
-		cp $VIM_CONF_DIR/dot.syntax.vim ~/.vim/syntax
-		;;
-	"zsh")
-		[ -f ~/.history ] && rm ~/.history
-		[ ! -d ~/.history ] && mkdir ~/.history
-		[ ! -d ~/.zsh ] && mkdir ~/.zsh
-		cp $ZSH_CONF_DIR/dot.zshrc ~/.zshrc
-		cp $ZSH_CONF_DIR/dot.zsh-alenv ~/.zsh/alenv
-		cp $ZSH_CONF_DIR/dot.zsh-colors ~/.zsh/colors
-		cp $ZSH_CONF_DIR/dot.zsh-compdef ~/.zsh/compdef
-		cp $ZSH_CONF_DIR/dot.zsh-keybind ~/.zsh/keybind
-		cp $ZSH_CONF_DIR/dot.zsh-prompt ~/.zsh/prompt
-		;;
-	*)
-		echo "Usage: `basename $0` vim|zsh"
-		;;
+function mk_dir {
+	DIR="$1"
+	[ -f ~/.$DIR ] && rm ~/.$DIR
+	[ ! -d ~/.$DIR ] && mkdir ~/.$DIR && echo "[M] ~/.${DIR}..."
+}
+
+function cp_file {
+	C="$1" # config type. e.g. 'vim'
+	F="$2" # filename. e.g. 'vimrc'
+	D="$3" # dir. optional. e.g. 'vim' if it should be placed in vim/
+	if [ -n "$D" ]; then
+		FN=".$D/$F"
+		OFN="dot.$D-$F"
+	else
+		FN=".$F"
+		OFN="dot.$F"
+	fi
+
+	# TODO
+	# backup
+	#	[ -f ~/$FN ] && echo "Backing up current $F to dot.$F" && mv $FN dot.$F
+
+	echo "[C] $OFN -> ~/$FN ..."
+	cp $C/$OFN ~/$FN
+}
+
+function deploy_vim {
+	mk_dir history
+	mk_dir vim
+	cp_file vim vimrc
+	cp_file vim syntax.vim vim
+}
+
+function deploy_zsh {
+	mk_dir history
+	mk_dir zsh
+	cp_file zsh zshrc
+	cp_file zsh alenv zsh
+	cp_file zsh colors zsh
+	cp_file zsh compdef zsh
+	cp_file zsh keybind zsh
+	cp_file zsh prompt zsh
+}
+
+function deploy_bash {
+	echo 'Copying dot.bashrc to ~/.bashrc ...'
+	cp $BASH_CONF_DIR/dot.bashrc ~/.bashrc
+}
+
+case $1 in
+	vim) deploy_vim ;;
+	zsh) deploy_zsh ;;
+	bash) deploy_bash ;;
+
+	*) echo "Usage: `basename $0` vim|zsh|bash" ;;
 esac
