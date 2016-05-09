@@ -51,7 +51,7 @@ function deploy_zsh {
 
 function deploy_bash {
 	echo 'Copying dot.bashrc to ~/.bashrc ...'
-	cp $BASH_CONF_DIR/dot.bashrc ~/.bashrc
+	cp_file bash bashrc
 }
 
 case $1 in
