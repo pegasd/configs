@@ -10,6 +10,7 @@
 set nocp					" turn off vi compatibility and behave leet ((-
 set nobk					" turn off back ups
 set nowb					" turn off back ups
+set clipboard=unnamed		" copy to system clipboard
 filet on					" turn on filetype recognition
 filet indent on				" filetype-based indentation
 

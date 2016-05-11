@@ -37,6 +37,7 @@ unset _d
 . ~/.zsh/keybind
 . ~/.zsh/compdef
 . ~/.zsh/prompt
+[ -f ~/.zsh/private ] && . ~/.zsh/private
 
 # Options
 setopt auto_cd				# cd even if 'cd' is omitted
