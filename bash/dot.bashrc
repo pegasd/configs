@@ -6,8 +6,8 @@
 
 # Colors
 E=$(printf "\e")
-bold="$E[1m"
 reset="$E[0m"
+bold="$E[1m"
 black="$E[30m"
 red="$E[31m"
 green="$E[32m"
@@ -19,7 +19,7 @@ white="$E[37m"
 
 # VCS prompt
 vcs_prompt() {
-  echo "$(git_prompt)$(hg_prompt)"
+  echo "$(hg_prompt)$(git_prompt)$(cvs_prompt)"
 }
 
 hg_prompt() {
@@ -64,12 +64,25 @@ git_prompt() {
   echo "$GIT_PROMPT"
 }
 
+cvs_prompt() {
+  [ ! -d CVS ] && return
+
+  PR="${cyan}cvs>${reset}"
+  PR_LHS="${cyan}[${reset}"
+  PR_RHS="${cyan}]${reset}"
+  CVS_REPO="`cat CVS/Repository`"
+  PR_REPO="${white}${CVS_REPO}${reset}"
+
+  CVS_PROMPT="$PR ${PR_LHS}${PR_REPO}${PR_RHS} "
+  echo "$CVS_PROMPT"
+}
+
 exit_status() {
   RC="$?"
   [ $RC != 0 ] && echo "${bold}${red}${RC}${reset} "
 }
 
-# Let's get it all together
+# Let's put it all together
 export PS1='${green}\u${reset}@${green}\h${reset} ${yellow}\w${reset}\n $(exit_status)$(vcs_prompt)\$ '
 export PS2='> '
 
