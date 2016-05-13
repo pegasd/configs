@@ -53,9 +53,14 @@ deploy_bash() {
   cp_file bash bashrc
 }
 
+deploy_screen() {
+  cp_file screen screenrc
+}
+
 case $1 in
   vim) deploy_vim ;;
   zsh) deploy_zsh ;;
   bash) deploy_bash ;;
-  *) echo "Usage: `basename $0` vim|zsh|bash" ;;
+  screen) deploy_screen ;;
+  *) echo "Usage: `basename $0` vim|zsh|bash|screen" ;;
 esac
