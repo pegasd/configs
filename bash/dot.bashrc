@@ -17,6 +17,19 @@ magenta="$E[35m"
 cyan="$E[36m"
 white="$E[37m"
 
+# Options
+HISTCONTROL=ignoreboth
+shopt -s histappend
+
+# Completion
+if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+  . /opt/local/etc/profile.d/bash_completion.sh
+elif [ -f /usr/share/bash-completion/bash_completion ]; then
+  . /usr/share/bash-completion/bash_completion
+elif [ -f /etc/bash_completion ]; then
+  . /etc/bash_completion
+fi
+
 # VCS prompt
 vcs_prompt() {
   echo "$(hg_prompt)$(git_prompt)$(cvs_prompt)"
@@ -33,7 +46,7 @@ hg_prompt() {
 
   PR_BRANCH="${white}${HG_BRANCH}${reset}"
 
-  HGST="`hg status`"
+  HGST="`hg status 2> /dev/null`"
   [ "`echo "$HGST" | grep '^A'`" != "" ] && PR_ST="${green}A${reset}"
   [ "`echo "$HGST" | grep '^M'`" != "" ] && PR_UNST="${bold}${yellow}M${reset}"
   [ "`echo "$HGST" | grep '^?'`" != "" ] && PR_UNTR="${bold}${red}C${reset}"
@@ -83,7 +96,7 @@ exit_status() {
 }
 
 # Let's put it all together
-export PS1='${green}\u${reset}@${green}\h${reset} ${yellow}\w${reset}\n $(exit_status)$(vcs_prompt)\$ '
+export PS1='${reset}${green}\u${reset} @ ${cyan}\h${reset} ${yellow}\w${reset}\n $(exit_status)$(vcs_prompt)\$ '
 export PS2='> '
 
 # Aliases
