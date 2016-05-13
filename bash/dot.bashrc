@@ -96,7 +96,7 @@ exit_status() {
 }
 
 # Let's put it all together
-export PS1='${reset}${green}\u${reset} @ ${cyan}\h${reset} ${yellow}\w${reset}\n $(exit_status)$(vcs_prompt)\$ '
+export PS1='${reset}${green}\u${reset} @ ${cyan}\H${reset} ${yellow}\w${reset}\n $(exit_status)$(vcs_prompt)\$ '
 export PS2='> '
 
 # Aliases
