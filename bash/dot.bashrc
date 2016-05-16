@@ -50,7 +50,7 @@ hg_prompt() {
   [ "`echo "$HGST" | grep '^A'`" != "" ] && PR_ST="${green}A${reset}"
   [ "`echo "$HGST" | grep '^M'`" != "" ] && PR_UNST="${bold}${yellow}M${reset}"
   [ "`echo "$HGST" | grep '^?'`" != "" ] && PR_UNTR="${bold}${red}C${reset}"
-  [ -n "$PR_ST" -o -n "$PR_UNST" ] && PR_STATUS=" ${PR_LHS} ${PR_ST}${PR_UNST}${PR_UNTR} ${PR_RHS}"
+  [ -n "$PR_ST" -o -n "$PR_UNST" -o -n "$PR_UNTR" ] && PR_STATUS=" ${PR_LHS} ${PR_ST}${PR_UNST}${PR_UNTR} ${PR_RHS}"
 
   HG_PROMPT="$PR ${PR_LHS}${PR_BRANCH}${PR_RHS}${PR_STATUS} "
   echo "$HG_PROMPT"
