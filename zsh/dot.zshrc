@@ -1,35 +1,30 @@
 ###
 #  .zshrc
 ##
-# zsh(1), zshmisc(1)
+# zshall(1)
+# github.com/robbyrussell/oh-my-zsh
 ###
 
-# ZSH-specific variables
-cdpath=(~)
-fpath=($fpath ~/.zsh/functions)
+# History
 HISTSIZE=4096
 SAVEHIST=4096
 HISTFILE=~/.history/zshhistory
 
-# Set PATH
+# Various PATHs
+# Don't _ever_ do this: path=($path .)
+cdpath=(~)
+fpath=($fpath ~/.zsh/functions)
 path=()
-TPATH=(~/bin /loc/TWWfsw/bin /opt/ImageMagick/bin /usr/opt/csw/bin /usr/opt/csw/gcc3/bin /opt/local/pspdev/bin /opt/local/bin
-  /opt/local/sbin /usr/local/bin /usr/local/sbin /bin /sbin /usr/bin /usr/sbin /usr/local/pspdev/bin
-  /usr/games /usr/games/bin /usr/X11R6/bin /usr/X11R6/sbin /stand /opt/local/bin
-  /usr/bin/X11 /usr/local/teTeX/bin /usr/local/sde/bin /Applications/Xcode.app/Contents/Developer/usr/bin)
-for _d in $TPATH; do
-  [ -d $_d ] && path=($path $_d)
+for PDIR in ~/bin \
+  /bin	/usr/bin  /usr/local/bin  /opt/local/bin     \
+  /sbin /usr/sbin /usr/local/sbin /opt/local/sbin    \
+  /usr/games /usr/games/bin /stand                   \
+  /usr/bin/X11 /usr/X11R6/bin /usr/X11R6/sbin        \
+  /usr/local/sde/bin                                 \
+  /Applications/Xcode.app/Contents/Developer/usr/bin
+do
+  [ -d $PDIR ] && path=($path $PDIR)
 done
-unset _d
-###
-#path=($path .)
-##
-# This ^ is here for historical purposes only.
-#
-# Actually...
-# It's also there as a reminder that you guys should NEVER put . in your path.
-# Unless you want somebody to put a little 'rm -rf /' script in your $HOME and name it 'ls'.
-###
 
 # Additional files
 . ~/.zsh/colors
