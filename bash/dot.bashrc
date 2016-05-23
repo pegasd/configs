@@ -17,9 +17,30 @@ magenta="$E[35m"
 cyan="$E[36m"
 white="$E[37m"
 
+# deploy: ssh -A && ssh-agent && (tmux || screen)
+deploy() {
+  if [[ -n "$SSH_AUTH_SOCK" ]]; then
+    [[ -z "`pgrep -u $(whoami) ssh-agent | tail -n 1`" ]] && ssh-agent
+    # @kshcherban \/
+    ln -sf $(find /tmp -maxdepth 2 -type s -name "agent*" -user $USER -printf '%T@ %p\n' 2>/dev/null |sort -n|tail -1|cut -d' ' -f2) ~/.ssh/ssh_auth_sock
+    export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+
+    cd /usr/local/share/deploy
+
+    if [[ -x "`which tmux`" ]]; then
+      tmux show 2> /dev/null && tmux attach || tmux
+    else
+      screen -r 2> /dev/null || screen -S deploy
+    fi
+  else
+    echo 'SSH_AUTH_SOCK is not set. Did you forget to -A?'
+  fi
+}
+
 # Options
 HISTCONTROL=ignoreboth
 shopt -s histappend
+shopt -s checkwinsize
 
 # Completion
 if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
@@ -32,71 +53,76 @@ fi
 
 # VCS prompt
 vcs_prompt() {
-  echo "$(hg_prompt)$(git_prompt)$(cvs_prompt)"
+  # staged; unstaged; untracked colors
+  ST_CLR="${green}"
+  UNST_CLR="${bold}${yellow}"
+  UNTR_CLR="${bold}${red}"
+
+  hg_prompt
+  git_prompt
+  cvs_prompt
+
+  if [[ -n "$VCS_NAME" ]]; then
+    PR="${cyan}$VCS_NAME>${reset}"
+    PR_LHS="${cyan}[${reset}"
+    PR_RHS="${cyan}]${reset}"
+    [[ -n "$VCS_STATE" ]] && PR_STATUS=" ${PR_LHS} ${VCS_STATE} ${PR_RHS}"
+    PR_INFO="${PR_LHS}${VCS_INFO}${PR_RHS}"
+    echo "$PR ${PR_INFO}${PR_STATUS} "
+  fi
 }
 
 hg_prompt() {
-
   HG_BRANCH="`hg branch 2> /dev/null`"
   [ -z "$HG_BRANCH" ] && return
 
-  PR="${cyan}hg>${reset}"
-  PR_LHS="${cyan}[${reset}"
-  PR_RHS="${cyan}]${reset}"
-
-  PR_BRANCH="${white}${HG_BRANCH}${reset}"
-
   HGST="`hg status 2> /dev/null`"
-  [ "`echo "$HGST" | grep '^A'`" != "" ] && PR_ST="${green}A${reset}"
-  [ "`echo "$HGST" | grep '^M'`" != "" ] && PR_UNST="${bold}${yellow}M${reset}"
-  [ "`echo "$HGST" | grep '^?'`" != "" ] && PR_UNTR="${bold}${red}C${reset}"
-  [ -n "$PR_ST" -o -n "$PR_UNST" -o -n "$PR_UNTR" ] && PR_STATUS=" ${PR_LHS} ${PR_ST}${PR_UNST}${PR_UNTR} ${PR_RHS}"
-
-  HG_PROMPT="$PR ${PR_LHS}${PR_BRANCH}${PR_RHS}${PR_STATUS} "
-  echo "$HG_PROMPT"
+  [ -n "`echo "$HGST" | grep '^A'`" ] && PR_ST="${ST_CLR}A${reset}"
+  [ -n "`echo "$HGST" | grep '^M'`" ] && PR_UNST="${UNST_CLR}M${reset}"
+  [ -n "`echo "$HGST" | grep '^?'`" ] && PR_UNTR="${UNTR_CLR}C${reset}"
+  VCS_NAME='hg'
+  VCS_STATE="${PR_ST}${PR_UNST}${PR_UNTR}"
+  VCS_INFO="${HG_BRANCH}"
 }
 
 git_prompt() {
-
   [ -z "`git rev-parse --is-inside-work-tree 2> /dev/null`" ] && return
 
-  PR="${cyan}git>${reset}"
-  PR_LHS="${cyan}[${reset}"
-  PR_RHS="${cyan}]${reset}"
-
   GIT_BRANCH="`git branch 2> /dev/null | grep '^*' | awk '{print $2}'`"
-  PR_BRANCH="${white}${GIT_BRANCH}${reset}"
 
   GST="`git status --porcelain 2> /dev/null`"
-  [ "`echo "$GST" | grep '^A'`" != "" ] && PR_ST="${green}A${reset}"
-  [ "`echo "$GST" | grep '^ M'`" != "" ] && PR_UNST="${bold}${yellow}M${reset}"
-  [ "`echo "$GST" | grep '^??'`" != "" ] && PR_UNTR="${bold}${red}C${reset}"
-  [ -n "$PR_ST" -o -n "$PR_UNST" -o -n "$PR_UNTR" ] && PR_STATUS=" ${PR_LHS} ${PR_ST}${PR_UNST}${PR_UNTR} ${PR_RHS}"
-
-  GIT_PROMPT="$PR ${PR_LHS}${PR_BRANCH}${PR_RHS}${PR_STATUS} "
-  echo "$GIT_PROMPT"
+  [ "`echo "$GST" | grep '^A'`" != "" ] && PR_ST="${ST_CLR}A${reset}"
+  [ "`echo "$GST" | grep '^ M'`" != "" ] && PR_UNST="${UNST_CLR}M${reset}"
+  [ "`echo "$GST" | grep '^??'`" != "" ] && PR_UNTR="${UNTR_CLR}C${reset}"
+  VCS_NAME='git'
+  VCS_STATE="${PR_ST}${PR_UNST}${PR_UNTR}"
+  VCS_INFO="${GIT_BRANCH}"
 }
 
 cvs_prompt() {
   [ ! -d CVS ] && return
 
-  PR="${cyan}cvs>${reset}"
-  PR_LHS="${cyan}[${reset}"
-  PR_RHS="${cyan}]${reset}"
-  CVS_REPO="`cat CVS/Repository`"
-  PR_REPO="${white}${CVS_REPO}${reset}"
-
-  CVS_PROMPT="$PR ${PR_LHS}${PR_REPO}${PR_RHS} "
-  echo "$CVS_PROMPT"
+  VCS_NAME='cvs'
+  VCS_INFO="`cat CVS/Repository`"
 }
 
 exit_status() {
   RC="$?"
-  [ $RC != 0 ] && echo "${bold}${red}${RC}${reset} "
+  [ $RC != 0 ] && echo "< ${bold}${red}${RC}${reset} > "
+}
+
+whereami() {
+  HOST="`hostname -f`"
+  HOSTSHORT="`hostname -s`"
+  if [[ "$HOST" =~ iponweb.net$ ]]; then
+    echo "${cyan}$(echo $HOST | cut -d. -f1)${reset} [ ${bold}${yellow}$(echo $HOST | cut -d. -f2 | tr '[:lower:]' '[:upper:]')${reset} ]"
+  else
+    echo "${green}${HOSTSHORT}${reset}"
+  fi
 }
 
 # Let's put it all together
-export PS1='${reset}${green}\u${reset} @ ${cyan}\H${reset} ${yellow}\w${reset}\n $(exit_status)$(vcs_prompt)\$ '
+export PS1='$(exit_status)${reset}${green}\u${reset} @ ${cyan}$(whereami)${reset} ${yellow}\w${reset}\n $(vcs_prompt)\$ '
 export PS2='> '
 
 # Aliases
