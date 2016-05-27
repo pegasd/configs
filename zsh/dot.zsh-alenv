@@ -46,22 +46,22 @@ setls()
       # where x is 3 for foreground and 4 for background
       ##
       # Parts of LS_COLORS variable:
-      # param	deflt  description
-      # no	0      Normal (non-filename) text
-      # fi	0      Regular file
-      # di	01;34  Directory
-      # ln	01;36  Symbolic link
-      # pi	33     Named pipe (FIFO)
-      # so	01;35  Socket
-      # do	01;35  Door
-      # bd	01;33  Block device
-      # cd	01;32  Character device
-      # ex	01;32  Executable file
-      # mi	(none) Missing file (defaults to fi)
-      # or	(none) Orphaned symbolic link (defaults to ln)
-      # lc	^[[    Left code
-      # rc	m      Right code
-      # ec	(none) End code (replaces lc+no+rc)
+      # param       deflt  description
+      # no  0      Normal (non-filename) text
+      # fi  0      Regular file
+      # di  01;34  Directory
+      # ln  01;36  Symbolic link
+      # pi  33     Named pipe (FIFO)
+      # so  01;35  Socket
+      # do  01;35  Door
+      # bd  01;33  Block device
+      # cd  01;32  Character device
+      # ex  01;32  Executable file
+      # mi  (none) Missing file (defaults to fi)
+      # or  (none) Orphaned symbolic link (defaults to ln)
+      # lc  ^[[    Left code
+      # rc  m      Right code
+      # ec  (none) End code (replaces lc+no+rc)
       ###
       LS_COLORS='no=00:fi=00:di=33:ln=35:pi=34:so=35:do=35'
       export LS_COLORS="$LS_COLORS:bd=35:cd=35:or=31:ex=32"
@@ -105,8 +105,6 @@ alias h='head -n 15'
 alias g='egrep'
 alias p='ps'
 alias cp='cp -p'
-alias telnet='telnet -K'
-#alias size='du -sh'
 vcmd=`which vim`
 if [[ -x $vcmd ]]; then
   alias v=$vcmd

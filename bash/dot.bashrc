@@ -28,7 +28,7 @@ deploy() {
     cd /usr/local/share/deploy
 
     if [[ -x "`which tmux`" ]]; then
-      tmux show 2> /dev/null && tmux attach || tmux
+      tmux attach 2> /dev/null || tmux
     else
       screen -r 2> /dev/null || screen -S deploy
     fi
@@ -66,7 +66,7 @@ vcs_prompt() {
     PR="${cyan}$VCS_NAME>${reset}"
     PR_LHS="${cyan}[${reset}"
     PR_RHS="${cyan}]${reset}"
-    [[ -n "$VCS_STATE" ]] && PR_STATUS=" ${PR_LHS} ${VCS_STATE} ${PR_RHS}"
+    [[ -n "$VCS_STATE" ]] && PR_STATUS=" ${PR_LHS} ${VCS_STATE}${PR_RHS}"
     PR_INFO="${PR_LHS}${VCS_INFO}${PR_RHS}"
     echo "$PR ${PR_INFO}${PR_STATUS} "
   fi
@@ -77,9 +77,10 @@ hg_prompt() {
   [ -z "$HG_BRANCH" ] && return
 
   HGST="`hg status 2> /dev/null`"
-  [ -n "`echo "$HGST" | grep '^A'`" ] && PR_ST="${ST_CLR}A${reset}"
-  [ -n "`echo "$HGST" | grep '^M'`" ] && PR_UNST="${UNST_CLR}M${reset}"
-  [ -n "`echo "$HGST" | grep '^?'`" ] && PR_UNTR="${UNTR_CLR}C${reset}"
+  [ -n "`echo "$HGST" | grep '^A'`" ] && PR_ST="${ST_CLR}A${reset} "
+  [ -n "`echo "$HGST" | grep '^M'`" ] && PR_UNST="${UNST_CLR}M${reset} "
+  [ -n "`echo "$HGST" | grep '^?'`" ] && PR_UNTR="${UNTR_CLR}?${reset} "
+  [ -n "`echo "$HGST" | grep '^!'`" ] && PR_UNTR="${PR_UNTR}${UNTR_CLR}!${reset} "
   VCS_NAME='hg'
   VCS_STATE="${PR_ST}${PR_UNST}${PR_UNTR}"
   VCS_INFO="${HG_BRANCH}"
@@ -91,9 +92,9 @@ git_prompt() {
   GIT_BRANCH="`git branch 2> /dev/null | grep '^*' | awk '{print $2}'`"
 
   GST="`git status --porcelain 2> /dev/null`"
-  [ "`echo "$GST" | grep '^A'`" != "" ] && PR_ST="${ST_CLR}A${reset}"
-  [ "`echo "$GST" | grep '^ M'`" != "" ] && PR_UNST="${UNST_CLR}M${reset}"
-  [ "`echo "$GST" | grep '^??'`" != "" ] && PR_UNTR="${UNTR_CLR}C${reset}"
+  [ "`echo "$GST" | grep '^A'`" != "" ] && PR_ST="${ST_CLR}A${reset} "
+  [ "`echo "$GST" | grep '^ M'`" != "" ] && PR_UNST="${UNST_CLR}M${reset} "
+  [ "`echo "$GST" | grep '^??'`" != "" ] && PR_UNTR="${UNTR_CLR}?${reset} "
   VCS_NAME='git'
   VCS_STATE="${PR_ST}${PR_UNST}${PR_UNTR}"
   VCS_INFO="${GIT_BRANCH}"
@@ -115,14 +116,16 @@ whereami() {
   HOST="`hostname -f`"
   HOSTSHORT="`hostname -s`"
   if [[ "$HOST" =~ iponweb.net$ ]]; then
-    echo "${cyan}$(echo $HOST | cut -d. -f1)${reset} [ ${bold}${yellow}$(echo $HOST | cut -d. -f2 | tr '[:lower:]' '[:upper:]')${reset} ]"
+    HPROJ="$(echo $HOST | cut -d. -f2 | tr '[:lower:]' '[:upper:]')"
+    echo "${reset}[ ${bold}${yellow}$HPROJ${reset} ] ${cyan}${HOST}${reset}"
   else
     echo "${green}${HOSTSHORT}${reset}"
   fi
 }
 
 # Let's put it all together
-export PS1='$(exit_status)${reset}${green}\u${reset} @ ${cyan}$(whereami)${reset} ${yellow}\w${reset}\n $(vcs_prompt)\$ '
+#export PS1='$(exit_status)${reset}${green}\u${reset} @ ${cyan}$(whereami)${reset} ${yellow}\w${reset}\n $(vcs_prompt)\$ '
+export PS1='$(exit_status)${cyan}$(whereami)${reset} ${yellow}\w${reset}\n $(vcs_prompt)\$ '
 export PS2='> '
 
 # Aliases
@@ -143,5 +146,16 @@ case `uname 2> /dev/null` in
     ;;
 esac
 
-[ "`which vim 2> /dev/null`" = "" ] && alias v='vi' || alias v='vim'
+if [[ -x "`which vim 2> /dev/null`" ]]; then
+  alias v='vim'
+  alias sv='sudo -E vim'
+else
+  alias v='vi'
+  alias sv='sudo -E vim'
+fi
+
 alias ..='cd ..'
+alias obs='osc -A obs'
+
+# UTF-8
+export LC_ALL='en_US.UTF-8'
