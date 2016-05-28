@@ -1,8 +1,8 @@
 ###
-#  ~/.zsh/prompt - ZSH Prompt
+#  .zsh/prompt - ZSH Prompt
 ##
-# - zshcontrib(1)
-# - https://gist.github.com/1712320
+# zshcontrib(1)
+# https://gist.github.com/1712320
 ###
 
 setopt prompt_subst
