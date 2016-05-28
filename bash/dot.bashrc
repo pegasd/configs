@@ -113,19 +113,19 @@ exit_status() {
 }
 
 whereami() {
-  HOST="`hostname -f`"
-  HOSTSHORT="`hostname -s`"
+  HOST=$(hostname -f)
+  ME=$(whoami)
+  [ "$ME" = "root" ] && ME="$bold$red$ME$reset" || ME="$green$ME$reset"
   if [[ "$HOST" =~ iponweb.net$ ]]; then
-    HPROJ="$(echo $HOST | cut -d. -f2 | tr '[:lower:]' '[:upper:]')"
-    echo "${reset}[ ${bold}${yellow}$HPROJ${reset} ] ${cyan}${HOST}${reset}"
+    PROJ=$(echo $HOST | cut -d. -f2 | tr '[:lower:]' '[:upper:]')
+    echo "$reset[ $ME @ $bold$yellow$PROJ$reset ] $cyan$HOST$reset"
   else
-    echo "${green}${HOSTSHORT}${reset}"
+    echo "$ME @ ${green}$(hostname -s)${reset}"
   fi
 }
 
 # Let's put it all together
-#export PS1='$(exit_status)${reset}${green}\u${reset} @ ${cyan}$(whereami)${reset} ${yellow}\w${reset}\n $(vcs_prompt)\$ '
-export PS1='$(exit_status)${cyan}$(whereami)${reset} ${yellow}\w${reset}\n $(vcs_prompt)\$ '
+export PS1='$(exit_status)$(whereami) ${yellow}\w${reset}\n $(vcs_prompt)\$ '
 export PS2='> '
 
 # Aliases
