@@ -2,15 +2,15 @@
 #  .screenrc
 ###
 
-startup_message			off
+startup_message off
 
 screen -t sh
 screen -t sh
 screen -t sh
-select					0
+select          0
 
-hardstatus				on
-hardstatus string		'%{= kG}[ %{C}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{Y} %Y-%m-%d %{W}%c %{g}]'
+hardstatus      on
+hardstatus string   '%{= kG}[ %{C}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{Y} %Y-%m-%d %{W}%c %{g}]'
 hardstatus alwayslastline
 
-#setenv SSH_AUTH_SOCK	$HOME/.ssh/ssh_auth_sock
+#setenv SSH_AUTH_SOCK   $HOME/.ssh/ssh_auth_sock
