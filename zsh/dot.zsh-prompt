@@ -58,14 +58,14 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 }
 
 HOST_COLOR="$hcolor"
-CDIR_COLOR="%{$fg[yellow]%}"
+CDIR_COLOR="$pr_yellow"
 if [ "`whoami`" = "root" ]
 then
-  USER_COLOR="%{$fg[red]%}"
-  PROMPT_COLOR="%{$fg[red]%}"
+  USER_COLOR="$pr_red"
+  PROMPT_COLOR="$pr_red"
 else
   USER_COLOR="$HOST_COLOR"
-  PROMPT_COLOR="%{$fg[white]%}"
+  PROMPT_COLOR="$pr_white"
 fi
 
 precmd() {
@@ -73,10 +73,10 @@ precmd() {
   vcs_info
 }
 
-PR_HOST="$HOST_COLOR%m%{$reset_color%}"
-PR_USER="$USER_COLOR%n%{$reset_color%}"
-PR_PROMPT="$PROMPT_COLOR%#%{$reset_color%}"
-PR_RETCODE="%(?.. < %{$fg_bold[red]%?$pr_reset >)"
+PR_HOST="$HOST_COLOR%m$pr_reset"
+PR_USER="$USER_COLOR%n$pr_reset"
+PR_PROMPT="$PROMPT_COLOR%#$pr_reset"
+PR_RETCODE="%(?.. < ${pr_lred}%?$pr_reset >)"
 PR_TIMEDATE="[]"
 
 PROMPT='~>$PR_RETCODE ${PR_USER} @ ${PR_HOST} $CDIR_COLOR%$PWDLEN<...<%~%<<%{$reset_color%}
