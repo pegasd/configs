@@ -118,12 +118,12 @@ function set_prompt() {
     local PR="${Cyan}$VCS_NAME>${Reset}"
     [[ -n "$VCS_STATE" ]] && local PR_STATUS=" ${PR_LHS} ${VCS_STATE}${PR_RHS}"
     local PR_INFO="${PR_LHS}${VCS_INFO}${PR_RHS}"
-    vcs_prompt="$PR ${PR_INFO}${PR_STATUS}"
+    vcs_prompt="${PR} ${PR_INFO}${PR_STATUS} "
   else
     vcs_prompt=''
   fi
 
-  PS1="${exit_status}${PR_LHS}\t${PR_RHS} ${whereami} ${Yellow}\w${Reset}\n ${vcs_prompt} \$ "
+  PS1="${exit_status}${PR_LHS}\t${PR_RHS} ${whereami} ${Yellow}\w${Reset}\n ${vcs_prompt}\$ "
 }
 
 PROMPT_COMMAND=set_prompt
