@@ -55,8 +55,10 @@ function set_prompt() {
   local ST_CLR="${Green}"
   local UNST_CLR="${BoldYellow}"
   local UNTR_CLR="${BoldRed}"
-  local VCS_PROMPT=''
   local VCS_NAME=''
+  local PR_ST=''
+  local PR_UNST=''
+  local PR_UNTR=''
 
   if [ $RC -ne 0 ]; then
     exit_status="< $BoldRed$RC$Reset > "
