@@ -47,6 +47,7 @@ fi
 
 
 function set_prompt() {
+  local RC=$?
   local PR_LHS="${Cyan}[${Reset}"
   local PR_RHS="${Cyan}]${Reset}"
   local HOST=$(hostname -f)
@@ -57,9 +58,8 @@ function set_prompt() {
   local VCS_PROMPT=''
   local VCS_NAME=''
 
-  rC=$?
-  if [ $rC -ne 0 ]; then
-    exit_status="< $BoldRed$rC$Reset > "
+  if [ $RC -ne 0 ]; then
+    exit_status="< $BoldRed$RC$Reset > "
   else
     exit_status=''
   fi
