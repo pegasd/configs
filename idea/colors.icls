@@ -3,20 +3,19 @@
     <property name="created">2016-11-20T21:23:58</property>
     <property name="ide">PyCharmCore</property>
     <property name="ideVersion">2016.2.3.0.0</property>
-    <property name="modified">2016-12-04T00:21:15</property>
-    <property name="originalScheme">Monokai [PgS]</property>
+    <property name="modified">2016-12-06T17:35:00</property>
+    <property name="originalScheme">Monokai</property>
   </metaInfo>
-  <option name="LINE_SPACING" value="0.9" />
   <font>
     <option name="EDITOR_FONT_NAME" value="SF Mono" />
-    <option name="EDITOR_FONT_SIZE" value="14" />
+    <option name="EDITOR_FONT_SIZE" value="12" />
   </font>
   <font>
     <option name="EDITOR_FONT_NAME" value="Menlo" />
-    <option name="EDITOR_FONT_SIZE" value="14" />
+    <option name="EDITOR_FONT_SIZE" value="13" />
   </font>
   <option name="CONSOLE_FONT_NAME" value="Ubuntu Mono" />
-  <option name="CONSOLE_LINE_SPACING" value="1.0" />
+  <option name="CONSOLE_FONT_SIZE" value="14" />
   <colors>
     <option name="CARET_COLOR" value="f8f8f0" />
     <option name="CARET_ROW_COLOR" value="3e3d32" />
@@ -25,7 +24,7 @@
     <option name="FILESTATUS_MODIFIED" value="59bea" />
     <option name="FILESTATUS_addedOutside" value="a7700" />
     <option name="FILESTATUS_modifiedOutside" value="59bea" />
-    <option name="GUTTER_BACKGROUND" value="272822" />
+    <option name="GUTTER_BACKGROUND" value="141414" />
     <option name="INDENT_GUIDE" value="3b3a32" />
     <option name="LINE_NUMBERS_COLOR" value="909090" />
     <option name="RIGHT_MARGIN_COLOR" value="d0d0d0" />
@@ -231,6 +230,11 @@
         <option name="FOREGROUND" value="75715e" />
       </value>
     </option>
+    <option name="CONSOLE_BLACK_OUTPUT">
+      <value>
+        <option name="FOREGROUND" value="121212" />
+      </value>
+    </option>
     <option name="CONSOLE_BLUE_BRIGHT_OUTPUT">
       <value>
         <option name="FOREGROUND" value="6871ff" />
@@ -258,7 +262,7 @@
     </option>
     <option name="CONSOLE_ERROR_OUTPUT">
       <value>
-        <option name="FOREGROUND" value="ffb3b3" />
+        <option name="FOREGROUND" value="ff6e67" />
       </value>
     </option>
     <option name="CONSOLE_GRAY_OUTPUT">
@@ -288,7 +292,7 @@
     </option>
     <option name="CONSOLE_NORMAL_OUTPUT">
       <value>
-        <option name="FOREGROUND" value="ffffff" />
+        <option name="FOREGROUND" value="d0d0d0" />
       </value>
     </option>
     <option name="CONSOLE_RED_BRIGHT_OUTPUT">
@@ -310,6 +314,11 @@
       <value>
         <option name="FOREGROUND" value="6ae96a" />
         <option name="FONT_TYPE" value="2" />
+      </value>
+    </option>
+    <option name="CONSOLE_WHITE_OUTPUT">
+      <value>
+        <option name="FOREGROUND" value="d0d0d0" />
       </value>
     </option>
     <option name="CONSOLE_YELLOW_BRIGHT_OUTPUT">
@@ -1234,11 +1243,6 @@
         <option name="BACKGROUND" value="f92672" />
       </value>
     </option>
-    <option name="RUBY_COMMENT">
-      <value>
-        <option name="FOREGROUND" value="75715e" />
-      </value>
-    </option>
     <option name="RUBY_ESCAPE_SEQUENCE">
       <value>
         <option name="FOREGROUND" value="ae81ff" />
@@ -1249,11 +1253,7 @@
         <option name="FOREGROUND" value="e6db74" />
       </value>
     </option>
-    <option name="RUBY_HASH_ASSOC">
-      <value>
-        <option name="FOREGROUND" value="f92672" />
-      </value>
-    </option>
+    <option name="RUBY_HASH_ASSOC" baseAttributes="DEFAULT_OPERATION_SIGN" />
     <option name="RUBY_HEREDOC_CONTENT">
       <value>
         <option name="FOREGROUND" value="e6db74" />
@@ -1492,7 +1492,7 @@
     <option name="TEXT">
       <value>
         <option name="FOREGROUND" value="d0d0d0" />
-        <option name="BACKGROUND" value="121212" />
+        <option name="BACKGROUND" value="141414" />
       </value>
     </option>
     <option name="TEXT_SEARCH_RESULT_ATTRIBUTES">
@@ -1562,11 +1562,6 @@
       <value>
         <option name="FOREGROUND" value="e3e3ff" />
         <option name="FONT_TYPE" value="1" />
-      </value>
-    </option>
-    <option name="YAML_COMMENT">
-      <value>
-        <option name="FOREGROUND" value="75715e" />
       </value>
     </option>
     <option name="YAML_SCALAR_LIST">

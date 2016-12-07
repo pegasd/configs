@@ -9,10 +9,7 @@
   <action id="CommentByLineComment">
     <keyboard-shortcut first-keystroke="ctrl meta c" />
   </action>
-  <action id="NextSplitter">
-    <keyboard-shortcut first-keystroke="alt tab" />
-    <keyboard-shortcut first-keystroke="shift ctrl minus" />
-  </action>
+  <action id="PrevSplitter" />
   <action id="ShowProjectStructureSettings">
     <keyboard-shortcut first-keystroke="meta alt s" />
   </action>
