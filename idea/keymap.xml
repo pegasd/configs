@@ -9,6 +9,9 @@
   <action id="CommentByLineComment">
     <keyboard-shortcut first-keystroke="ctrl meta c" />
   </action>
+  <action id="MaximizeToolWindow">
+    <keyboard-shortcut first-keystroke="alt dead_grave" />
+  </action>
   <action id="PrevSplitter" />
   <action id="ShowProjectStructureSettings">
     <keyboard-shortcut first-keystroke="meta alt s" />
