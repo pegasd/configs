@@ -26,4 +26,12 @@
       <option name="USE_TAB_CHARACTER" value="false" />
     </indentOptions>
   </codeStyleSettings>
+  <codeStyleSettings language="ruby">
+    <option name="ALIGN_GROUP_FIELD_DECLARATIONS" value="true" />
+    <option name="SPACE_WITHIN_BRACES" value="true" />
+    <indentOptions>
+      <option name="CONTINUATION_INDENT_SIZE" value="2" />
+      <option name="USE_RELATIVE_INDENTS" value="false" />
+    </indentOptions>
+  </codeStyleSettings>
 </code_scheme>
