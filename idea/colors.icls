@@ -3,7 +3,7 @@
     <property name="created">2016-11-20T21:23:58</property>
     <property name="ide">PyCharmCore</property>
     <property name="ideVersion">2016.2.3.0.0</property>
-    <property name="modified">2016-12-14T09:05:14</property>
+    <property name="modified">2016-12-29T23:39:21</property>
     <property name="originalScheme">Monokai</property>
   </metaInfo>
   <font>
@@ -45,6 +45,7 @@
         <option name="FOREGROUND" value="c57633" />
       </value>
     </option>
+    <option name="BASH.HERE_DOC" baseAttributes="DEFAULT_STRING" />
     <option name="BASH.INTERNAL_COMMAND">
       <value>
         <option name="FOREGROUND" value="5f87af" />
@@ -489,7 +490,7 @@
     </option>
     <option name="DEFAULT_FUNCTION_CALL">
       <value>
-        <option name="FOREGROUND" value="a6e22e" />
+        <option name="FOREGROUND" value="87d75f" />
       </value>
     </option>
     <option name="DEFAULT_FUNCTION_DECLARATION">
@@ -526,7 +527,11 @@
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
-    <option name="DEFAULT_METADATA" baseAttributes="TEXT" />
+    <option name="DEFAULT_METADATA">
+      <value>
+        <option name="FOREGROUND" value="d0d0d0" />
+      </value>
+    </option>
     <option name="DEFAULT_NUMBER">
       <value>
         <option name="FOREGROUND" value="875faf" />
@@ -787,6 +792,21 @@
         <option name="ERROR_STRIPE_COLOR" value="ccccff" />
       </value>
     </option>
+    <option name="IGNORE.COMMENT" baseAttributes="DEFAULT_LINE_COMMENT" />
+    <option name="IGNORE.HEADER">
+      <value>
+        <option name="FOREGROUND" value="875faf" />
+        <option name="FONT_TYPE" value="3" />
+      </value>
+    </option>
+    <option name="IGNORE.SECTION">
+      <value>
+        <option name="FOREGROUND" value="875faf" />
+        <option name="FONT_TYPE" value="2" />
+      </value>
+    </option>
+    <option name="IGNORE.SYNTAX" baseAttributes="DEFAULT_INSTANCE_FIELD" />
+    <option name="IGNORE.VALUE" baseAttributes="DEFAULT_STRING" />
     <option name="IMPLICIT_ANONYMOUS_CLASS_PARAMETER_ATTRIBUTES">
       <value>
         <option name="FOREGROUND" value="fda5ff" />
@@ -810,51 +830,13 @@
         <option name="BACKGROUND" value="ededed" />
       </value>
     </option>
-    <option name="INSTANCE_FIELD_ATTRIBUTES">
-      <value>
-        <option name="FOREGROUND" value="fda5ff" />
-        <option name="FONT_TYPE" value="1" />
-      </value>
-    </option>
+    <option name="INSTANCE_FIELD_ATTRIBUTES" baseAttributes="DEFAULT_INSTANCE_FIELD" />
     <option name="JADE_FILE_PATH">
       <value>
         <option name="FOREGROUND" value="e6db74" />
       </value>
     </option>
     <option name="JADE_STATEMENTS">
-      <value>
-        <option name="FOREGROUND" value="f92672" />
-      </value>
-    </option>
-    <option name="JAVA_BLOCK_COMMENT">
-      <value>
-        <option name="FOREGROUND" value="75715e" />
-      </value>
-    </option>
-    <option name="JAVA_DOC_COMMENT">
-      <value>
-        <option name="FOREGROUND" value="75715e" />
-      </value>
-    </option>
-    <option name="JAVA_DOC_MARKUP">
-      <value>
-        <option name="BACKGROUND" value="223f22" />
-      </value>
-    </option>
-    <option name="JAVA_DOC_TAG">
-      <value>
-        <option name="FONT_TYPE" value="1" />
-        <option name="EFFECT_COLOR" value="80807f" />
-        <option name="EFFECT_TYPE" value="1" />
-      </value>
-    </option>
-    <option name="JAVA_INVALID_STRING_ESCAPE">
-      <value>
-        <option name="FOREGROUND" value="f8f8f0" />
-        <option name="BACKGROUND" value="f92672" />
-      </value>
-    </option>
-    <option name="JAVA_KEYWORD">
       <value>
         <option name="FOREGROUND" value="f92672" />
       </value>
@@ -867,16 +849,6 @@
     <option name="JAVA_NUMBER">
       <value>
         <option name="FOREGROUND" value="ae81ff" />
-      </value>
-    </option>
-    <option name="JAVA_OPERATION_SIGN">
-      <value>
-        <option name="FOREGROUND" value="f92672" />
-      </value>
-    </option>
-    <option name="JAVA_STRING">
-      <value>
-        <option name="FOREGROUND" value="e6db74" />
       </value>
     </option>
     <option name="JAVA_VALID_STRING_ESCAPE">
@@ -1201,8 +1173,6 @@
         <option name="FOREGROUND" value="e6db74" />
       </value>
     </option>
-    <option name="RUBY_GVAR" baseAttributes="DEFAULT_GLOBAL_VARIABLE" />
-    <option name="RUBY_HASH_ASSOC" baseAttributes="DEFAULT_OPERATION_SIGN" />
     <option name="RUBY_HEREDOC_CONTENT">
       <value>
         <option name="FOREGROUND" value="e6db74" />
@@ -1223,9 +1193,6 @@
         <option name="FOREGROUND" value="f92672" />
       </value>
     </option>
-    <option name="RUBY_LOCAL_VAR_ID" baseAttributes="DEFAULT_LOCAL_VARIABLE" />
-    <option name="RUBY_METHOD_NAME" baseAttributes="DEFAULT_INSTANCE_METHOD" />
-    <option name="RUBY_NTH_REF" baseAttributes="DEFAULT_PREDEFINED_SYMBOL" />
     <option name="RUBY_NUMBER">
       <value>
         <option name="FOREGROUND" value="ae81ff" />
@@ -1430,6 +1397,7 @@
         <option name="FONT_TYPE" value="3" />
       </value>
     </option>
+    <option name="STATIC_FINAL_FIELD_ATTRIBUTES" baseAttributes="STATIC_FIELD_ATTRIBUTES" />
     <option name="TAG_ATTR_KEY">
       <value>
         <option name="FOREGROUND" value="a6e22e" />
@@ -1460,6 +1428,7 @@
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
+    <option name="TYPE_PARAMETER_NAME_ATTRIBUTES" baseAttributes="DEFAULT_PARAMETER" />
     <option name="UNMATCHED_BRACE_ATTRIBUTES">
       <value>
         <option name="BACKGROUND" value="583535" />
