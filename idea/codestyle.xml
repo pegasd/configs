@@ -13,11 +13,8 @@
   </option>
   <option name="LINE_SEPARATOR" value="&#10;" />
   <Python>
-    <option name="SPACE_AROUND_EQ_IN_NAMED_PARAMETER" value="true" />
-    <option name="SPACE_AROUND_EQ_IN_KEYWORD_ARGUMENT" value="true" />
     <option name="BLANK_LINE_AT_FILE_END" value="false" />
     <option name="NEW_LINE_AFTER_COLON" value="true" />
-    <option name="DICT_ALIGNMENT" value="1" />
     <option name="USE_CONTINUATION_INDENT_FOR_ARGUMENTS" value="true" />
     <option name="OPTIMIZE_IMPORTS_SORT_NAMES_IN_FROM_IMPORTS" value="true" />
     <option name="OPTIMIZE_IMPORTS_JOIN_FROM_IMPORTS_WITH_SAME_SOURCE" value="true" />
