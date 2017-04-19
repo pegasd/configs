@@ -4,7 +4,7 @@
     <property name="created">2016-11-20T21:23:58</property>
     <property name="ide">PyCharmCore</property>
     <property name="ideVersion">2016.2.3.0.0</property>
-    <property name="modified">2017-01-22T01:39:21</property>
+    <property name="modified">2017-04-06T12:13:10</property>
     <property name="originalScheme">Monokai</property>
   </metaInfo>
   <font>
@@ -46,7 +46,6 @@
         <option name="FOREGROUND" value="c57633" />
       </value>
     </option>
-    <option name="BASH.HERE_DOC" baseAttributes="DEFAULT_STRING" />
     <option name="BASH.INTERNAL_COMMAND">
       <value>
         <option name="FOREGROUND" value="5f87af" />
@@ -831,7 +830,6 @@
         <option name="BACKGROUND" value="ededed" />
       </value>
     </option>
-    <option name="INSTANCE_FIELD_ATTRIBUTES" baseAttributes="DEFAULT_INSTANCE_FIELD" />
     <option name="JADE_FILE_PATH">
       <value>
         <option name="FOREGROUND" value="e6db74" />
@@ -1012,7 +1010,6 @@
         <option name="FOREGROUND" value="e6db74" />
       </value>
     </option>
-    <option name="PY.BUILTIN_NAME" baseAttributes="DEFAULT_PREDEFINED_SYMBOL" />
     <option name="PY.CLASS_DEFINITION">
       <value>
         <option name="FOREGROUND" value="87d75f" />
@@ -1029,16 +1026,11 @@
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
-    <option name="PY.FUNC_DEFINITION" baseAttributes="DEFAULT_FUNCTION_DECLARATION" />
-    <option name="PY.KEYWORD_ARGUMENT" baseAttributes="DEFAULT_PARAMETER" />
     <option name="PY.NUMBER">
       <value>
         <option name="FOREGROUND" value="ae81ff" />
       </value>
     </option>
-    <option name="PY.PREDEFINED_DEFINITION" baseAttributes="DEFAULT_PREDEFINED_SYMBOL" />
-    <option name="PY.PREDEFINED_USAGE" baseAttributes="DEFAULT_PREDEFINED_SYMBOL" />
-    <option name="PY.SELF_PARAMETER" baseAttributes="DEFAULT_PARAMETER" />
     <option name="PY.STRING">
       <value>
         <option name="FOREGROUND" value="e6db74" />
@@ -1392,7 +1384,6 @@
         <option name="FONT_TYPE" value="3" />
       </value>
     </option>
-    <option name="STATIC_FINAL_FIELD_ATTRIBUTES" baseAttributes="STATIC_FIELD_ATTRIBUTES" />
     <option name="TAG_ATTR_KEY">
       <value>
         <option name="FOREGROUND" value="a6e22e" />
@@ -1401,7 +1392,7 @@
     <option name="TEXT">
       <value>
         <option name="FOREGROUND" value="d0d0d0" />
-        <option name="BACKGROUND" value="141414" />
+        <option name="BACKGROUND" value="121212" />
       </value>
     </option>
     <option name="TEXT_SEARCH_RESULT_ATTRIBUTES">
@@ -1423,7 +1414,6 @@
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
-    <option name="TYPE_PARAMETER_NAME_ATTRIBUTES" baseAttributes="DEFAULT_PARAMETER" />
     <option name="UNMATCHED_BRACE_ATTRIBUTES">
       <value>
         <option name="BACKGROUND" value="583535" />

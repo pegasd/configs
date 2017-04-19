@@ -1,7 +1,7 @@
 <keymap version="1" name="PgS" parent="Mac OS X 10.5+">
   <action id="ActivateTerminalToolWindow">
     <keyboard-shortcut first-keystroke="alt f12" />
-    <keyboard-shortcut first-keystroke="back_quote" />
+    <keyboard-shortcut first-keystroke="ctrl meta t" />
   </action>
   <action id="CommentByBlockComment">
     <keyboard-shortcut first-keystroke="shift ctrl meta c" />
@@ -42,5 +42,8 @@
   </action>
   <action id="Unsplit">
     <keyboard-shortcut first-keystroke="shift meta back_slash" />
+  </action>
+  <action id="editRunConfigurations">
+    <keyboard-shortcut first-keystroke="shift meta comma" />
   </action>
 </keymap>
