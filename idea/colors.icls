@@ -4,7 +4,7 @@
     <property name="created">2016-11-20T21:23:58</property>
     <property name="ide">PyCharmCore</property>
     <property name="ideVersion">2016.2.3.0.0</property>
-    <property name="modified">2017-05-06T22:42:44</property>
+    <property name="modified">2017-06-01T10:59:03</property>
     <property name="originalScheme">Monokai</property>
   </metaInfo>
   <font>
@@ -13,10 +13,10 @@
   </font>
   <font>
     <option name="EDITOR_FONT_NAME" value="Menlo" />
-    <option name="EDITOR_FONT_SIZE" value="12" />
+    <option name="EDITOR_FONT_SIZE" value="14" />
   </font>
-  <option name="CONSOLE_FONT_NAME" value="Ubuntu Mono" />
-  <option name="CONSOLE_FONT_SIZE" value="14" />
+  <option name="CONSOLE_FONT_NAME" value="SF Mono" />
+  <option name="CONSOLE_FONT_SIZE" value="13" />
   <colors>
     <option name="ANNOTATIONS_COLOR" value="101010" />
     <option name="CARET_COLOR" value="f8f8f0" />
@@ -1216,7 +1216,11 @@
       </value>
     </option>
     <option name="RUBY_GVAR" baseAttributes="DEFAULT_GLOBAL_VARIABLE" />
-    <option name="RUBY_HASH_ASSOC" baseAttributes="DEFAULT_OPERATION_SIGN" />
+    <option name="RUBY_HASH_ASSOC">
+      <value>
+        <option name="FOREGROUND" value="d75f5f" />
+      </value>
+    </option>
     <option name="RUBY_HEREDOC_CONTENT">
       <value>
         <option name="FOREGROUND" value="ffd787" />
