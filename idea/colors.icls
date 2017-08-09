@@ -4,7 +4,7 @@
     <property name="created">2016-11-20T21:23:58</property>
     <property name="ide">PyCharmCore</property>
     <property name="ideVersion">2016.2.3.0.0</property>
-    <property name="modified">2017-06-01T10:59:03</property>
+    <property name="modified">2017-07-23T15:24:58</property>
     <property name="originalScheme">Monokai</property>
   </metaInfo>
   <font>
@@ -60,6 +60,28 @@
     <option name="BASH.VAR_DEF">
       <value>
         <option name="FOREGROUND" value="8787" />
+      </value>
+    </option>
+    <option name="BREADCRUMBS_CURRENT">
+      <value>
+        <option name="FOREGROUND" value="d0d0d0" />
+        <option name="BACKGROUND" value="585858" />
+      </value>
+    </option>
+    <option name="BREADCRUMBS_DEFAULT">
+      <value>
+        <option name="FOREGROUND" value="d0d0d0" />
+      </value>
+    </option>
+    <option name="BREADCRUMBS_HOVERED">
+      <value>
+        <option name="FOREGROUND" value="d0d0d0" />
+        <option name="BACKGROUND" value="585858" />
+      </value>
+    </option>
+    <option name="BREADCRUMBS_INACTIVE">
+      <value>
+        <option name="FOREGROUND" value="d0d0d0" />
       </value>
     </option>
     <option name="BREAKPOINT_ATTRIBUTES">
