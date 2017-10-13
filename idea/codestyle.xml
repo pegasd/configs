@@ -1,4 +1,4 @@
-<code_scheme name="PgS">
+<code_scheme name="PgS" version="173">
   <option name="OTHER_INDENT_OPTIONS">
     <value>
       <option name="INDENT_SIZE" value="2" />
@@ -14,6 +14,9 @@
   <option name="LINE_SEPARATOR" value="&#10;" />
   <option name="RIGHT_MARGIN" value="140" />
   <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="true" />
+  <HCL-Terraform>
+    <option name="ARRAY_WRAPPING" value="0" />
+  </HCL-Terraform>
   <Python>
     <option name="BLANK_LINE_AT_FILE_END" value="false" />
     <option name="NEW_LINE_AFTER_COLON" value="true" />

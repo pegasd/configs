@@ -4,7 +4,7 @@
     <property name="created">2016-11-20T21:23:58</property>
     <property name="ide">PyCharmCore</property>
     <property name="ideVersion">2016.2.3.0.0</property>
-    <property name="modified">2017-07-23T15:24:58</property>
+    <property name="modified">2017-10-13T18:13:07</property>
     <property name="originalScheme">Monokai</property>
   </metaInfo>
   <font>
@@ -46,6 +46,7 @@
         <option name="FOREGROUND" value="c57633" />
       </value>
     </option>
+    <option name="BASH.HERE_DOC" baseAttributes="DEFAULT_STRING" />
     <option name="BASH.INTERNAL_COMMAND">
       <value>
         <option name="FOREGROUND" value="5f87af" />
@@ -1005,6 +1006,12 @@
     <option name="PUPPET_ESCAPE_SEQUENCE">
       <value>
         <option name="FOREGROUND" value="ae81ff" />
+      </value>
+    </option>
+    <option name="PUPPET_HEREDOC_TAGS">
+      <value>
+        <option name="FOREGROUND" value="e6db74" />
+        <option name="EFFECT_TYPE" value="1" />
       </value>
     </option>
     <option name="PUPPET_KEYWORD">
